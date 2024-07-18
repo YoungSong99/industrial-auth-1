@@ -6,10 +6,6 @@ class CommentPolicy < ApplicationPolicy
     @comment = comment
   end
 
-  def index?
-    true
-  end
-
   def show?
     true
   end
@@ -23,6 +19,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    comment.author == user
+    update?
   end
 end

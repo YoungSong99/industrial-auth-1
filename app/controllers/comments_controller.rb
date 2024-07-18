@@ -62,11 +62,11 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_photo
-    @photo = Comment.find(params[:id])
-  end
-  # Only allow a list of trusted parameters through.
   def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
     params.require(:comment).permit(:author_id, :photo_id, :body)
   end
 
