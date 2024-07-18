@@ -1,23 +1,36 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show liked feed followers following discover ]
-  before_action :is_an_authorized_user, only: [:feed, :discover]
+  before_action { authorize @user || User }
+
+
+  def show
+  end
+
+  def liked
+  end
+
+  def feed
+  end
+
+  def followers
+  end
+
+
+  def following
+  end
+
+  def discover
+  end
 
 
   private
-    def set_user
-      if params[:username]
-        @user = User.find_by!(username: params.fetch(:username))
-      else
-        @user = current_user
-      end
-    end
 
-  def is_an_authorized_user
+  def set_user
     if params[:username]
       @user = User.find_by!(username: params.fetch(:username))
-      if current_user != @user
-        redirect_back fallback_location: root_url, alert: "You're not authorized for that."
-      end
+    else
+      @user = current_user
     end
   end
+
 end
