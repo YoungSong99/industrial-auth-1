@@ -6,12 +6,8 @@ class FollowRequestPolicy < ApplicationPolicy
     @follow_request = follow_request
   end
 
-  def index?
-    true
-  end
-
   def show?
-    user == follow_request.sender || user == follow_request.recipient
+    true
   end
 
   def create?
@@ -26,9 +22,4 @@ class FollowRequestPolicy < ApplicationPolicy
     update?
   end
 
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
 end

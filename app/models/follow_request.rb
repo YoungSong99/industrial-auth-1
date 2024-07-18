@@ -30,7 +30,6 @@ class FollowRequest < ApplicationRecord
   # scope :not_accepted, -> { where.not(status: "accepted" ) }
 
   validates :recipient_id, uniqueness: { scope: :sender_id, message: "already requested" }
-
   validate :users_cant_follow_themselves
 
   def users_cant_follow_themselves
